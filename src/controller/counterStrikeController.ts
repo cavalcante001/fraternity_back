@@ -6,8 +6,7 @@ export const listaBans = async (req: Request, res: Response) => {
     let page = parseInt(req.params.page);
     page = ((page -1 ) * 10);
     const bans = await Bans.findAll({limit: 10, offset: page});
+    const total_page = await Bans.count();
 
-    console.log(req.params.page);
-
-    res.json({bans})
+    res.json({bans, total_page})
 }
